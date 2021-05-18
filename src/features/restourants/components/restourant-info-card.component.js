@@ -29,6 +29,12 @@ const Info = styled.View`
   padding: ${(props) => props.theme.space[3]};
 `;
 
+const Rating = styled.View`
+  flex-direction: row;
+  padding-top: ${(props) => props.theme.space[2]};
+  padding-bottom: ${(props) => props.theme.space[2]};
+`;
+
 export const RestourantInfoCard = ({ restourant = {} }) => {
   const {
     name = "Some Restourant",
@@ -42,12 +48,18 @@ export const RestourantInfoCard = ({ restourant = {} }) => {
     isClosedTemporarly,
   } = restourant;
 
+  const ratingArray = Array.from(new Array(Math.floor(rating)));
+
   return (
     <RestourantCard elevation={5}>
       <RestourantCover key={name} source={{ uri: photo[0] }} />
       <Info>
         <Title>{name}</Title>
-        <SvgXml xml={Star} width={20} height={20} />
+        <Rating>
+          {ratingArray.map((_, index) => (
+            <SvgXml key={index} xml={Star} width={20} height={20} />
+          ))}
+        </Rating>
         <Address>{address}</Address>
       </Info>
     </RestourantCard>
