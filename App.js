@@ -1,6 +1,5 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from "react";
-import { View, Text } from "react-native";
+import { Text } from "react-native";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { ThemeProvider } from "styled-components/native";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
@@ -11,27 +10,43 @@ import {
 
 import { theme } from "./src/infrastructure/theme";
 import { RestourantScreen } from "./src/features/restourants/screens/restourant.screen";
+import { SafeArea } from "./src/components/utility/safeArea";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Ionicons } from "@expo/vector-icons";
 
 function MapScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <SafeArea>
       <Text>Home!</Text>
-    </View>
+    </SafeArea>
   );
 }
 
 function SettingsScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <SafeArea>
       <Text>Settings!</Text>
-    </View>
+    </SafeArea>
   );
 }
 
 const Tab = createBottomTabNavigator();
+const TAB_ICON = {
+  Restourant: "md-restaurant",
+  Settings: "md-settings",
+  Map: "md-map",
+};
+
+const createScreenOptions = ({ route }) => {
+  const iconName = TAB_ICON[route.name];
+  return {
+    tabBarIcon: ({ size, color }) => (
+      <Ionicons name={iconName} size={size} color={color} />
+    ),
+  };
+};
 
 export default function App() {
   const [OswaldLoaded] = useOswald({ Oswald_400Regular });
@@ -45,7 +60,13 @@ export default function App() {
     <>
       <ThemeProvider theme={theme}>
         <NavigationContainer>
-          <Tab.Navigator style={{ paddingBottom: 20 }}>
+          <Tab.Navigator
+            screenOptions={createScreenOptions}
+            tabBarOptions={{
+              activeTintColor: theme.colors.ui.error,
+              inactiveTintColor: theme.colors.ui.secondary,
+            }}
+          >
             <Tab.Screen name="Restourant" component={RestourantScreen} />
             <Tab.Screen name="Map" component={MapScreen} />
             <Tab.Screen name="Settings" component={SettingsScreen} />
