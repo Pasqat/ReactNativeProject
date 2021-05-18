@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, SafeAreaView, StatusBar } from "react-native";
+import { SafeAreaView, StatusBar } from "react-native";
 import { Searchbar } from "react-native-paper";
 import styled from "styled-components/native";
 
@@ -23,7 +23,7 @@ const RestourantListContainer = styled.View`
 export const RestourantScreen = () => (
   <SafeArea>
     <SearchContainer>
-      <Searchbar placeholder="SearchContainer" />
+      <Searchbar />
     </SearchContainer>
     <RestourantListContainer>
       <RestourantInfoCard />
