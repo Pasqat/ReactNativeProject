@@ -11,7 +11,7 @@ export const restaurantRequest = (location = "37.7749295,-122.4194155") => {
   });
 };
 
-const restaurantTransform = ({ results = [] }) => {
+export const restaurantTransform = ({ results = [] }) => {
   const mappedResult = results.map((restaurant) => {
     return {
       ...restaurant,
@@ -22,8 +22,3 @@ const restaurantTransform = ({ results = [] }) => {
 
   return camelize(mappedResult);
 };
-
-restaurantRequest()
-  .then(restaurantTransform)
-  .then((transformedResult) => console.log(transformedResult)) // you can use (result) => ... as well
-  .catch((err) => console.log(err));
