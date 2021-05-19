@@ -50,7 +50,7 @@ export const RestourantScreen = () => (
           <RestourantInfoCard />
         </Spacer>
       )}
-      keyExtractor={(item) => item.name}
+      keyExtractor={(item) => item.name.toString()}
     />
   </SafeArea>
 );

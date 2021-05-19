@@ -16,6 +16,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
+// TODO elimina dopo aver testato
+import { restaurantRequest } from "./src/services/restaurants/restaurant.service";
+
 function MapScreen() {
   return (
     <SafeArea>
