@@ -21,7 +21,7 @@ export const RestourantInfoCard = ({ restourant = {} }) => {
   const {
     name = "Some Restourant",
     icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
-    photo = [
+    photos = [
       "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
     ],
     address = "100 some random street",
@@ -34,7 +34,7 @@ export const RestourantInfoCard = ({ restourant = {} }) => {
 
   return (
     <RestourantCard elevation={5}>
-      <RestourantCover key={name} source={{ uri: photo[0] }} />
+      <RestourantCover key={name} source={{ uri: photos[0] }} />
       <Info>
         <Text variant="label">{name}</Text>
         <Section>
