@@ -1,10 +1,12 @@
 import React from "react";
+import { SafeArea } from "../../../components/utility/safeArea";
 import { RestourantInfoCard } from "../components/restourant-info-card.component";
 
 export const RestaurantDetailScreen = ({ route }) => {
-  if (!route.params.item) {
-    return;
-  }
-  const item = route.params.item;
-  return <RestourantInfoCard restourant={item} />;
+  const { restaurant } = route.params;
+  return (
+    <SafeArea>
+      <RestourantInfoCard restourant={restaurant} />
+    </SafeArea>
+  );
 };
