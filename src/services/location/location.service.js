@@ -14,8 +14,8 @@ export const locationRequest = (searchWord) => {
 
 export const locationTransform = (result) => {
   const transformedResult = camelize(result);
-  const { geometry = {} } = transformedResult[0];
-  const { lat, lng } = geometry;
+  const { geometry = {} } = transformedResult.results[0];
+  const { lat, lng } = geometry.location;
 
   return { lat, lng };
 };
