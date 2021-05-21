@@ -7,16 +7,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { theme } from "../theme";
 
 import { SafeArea } from "../../components/utility/safeArea";
+import { MapScreen } from "../../features/map/screens/map.screen";
 
 import { RestaurantNavigator } from "./restaurant.navigator";
-
-function MapScreen() {
-  return (
-    <SafeArea>
-      <Text>Home!</Text>
-    </SafeArea>
-  );
-}
 
 function SettingsScreen() {
   return (
