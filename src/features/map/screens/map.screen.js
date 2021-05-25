@@ -6,6 +6,7 @@ import { Search } from "../components/search.component";
 
 import { LocationContext } from "../../../services/location/location.context";
 import { RestaurantContext } from "../../../services/restaurants/restaurants.context";
+import { MapCallout } from "../components/map-callout.component";
 
 const Map = styled(MapView)`
   height: 100%;
@@ -18,7 +19,6 @@ export const MapScreen = () => {
   const [latDelta, setLatDelta] = useState(0);
 
   const { viewport, lat, lng } = location;
-  console.log(viewport.southwest);
 
   useEffect(() => {
     const northeastLat = viewport.northeast.lat;
@@ -39,7 +39,20 @@ export const MapScreen = () => {
         }}
       >
         {restaurants.map((restaurant) => {
-          return null;
+          return (
+            <MapView.Marker
+              key={restaurant.name}
+              title={restaurant.name}
+              coordinate={{
+                latitude: restaurant.geometry.location.lat,
+                longitude: restaurant.geometry.location.lng,
+              }}
+            >
+              <MapView.Callout>
+                <MapCallout restaurant={restaurant} />
+              </MapView.Callout>
+            </MapView.Marker>
+          );
         })}
       </Map>
     </>
