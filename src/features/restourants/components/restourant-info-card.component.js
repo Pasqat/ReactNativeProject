@@ -1,4 +1,6 @@
 import React from "react";
+import { View } from "react-native";
+import { SvgXml } from "react-native-svg";
 
 import {
   RestourantCard,
@@ -11,13 +13,13 @@ import {
   Icon,
 } from "./restourant-info-card.styles";
 
-import { SvgXml } from "react-native-svg";
 import Star from "../../../../assets/star";
 import Open from "../../../../assets/open";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { Text } from "../../../components/typography/text.component";
+import { Favourite } from "../../../components/favourites/favourite.component";
 
-export const RestourantInfoCard = ({ restourant = {} }) => {
+export const RestourantInfoCard = ({ restaurant = {} }) => {
   const {
     name = "Some Restourant",
     icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
@@ -29,13 +31,16 @@ export const RestourantInfoCard = ({ restourant = {} }) => {
     rating = 4,
     isClosedTemporarly = true,
     placeId,
-  } = restourant;
+  } = restaurant;
 
   const ratingArray = Array.from(new Array(Math.floor(rating)));
 
   return (
     <RestourantCard elevation={5}>
-      <RestourantCover key={name} source={{ uri: photos[0] }} />
+      <View>
+        <Favourite restaurant={restaurant} />
+        <RestourantCover key={name} source={{ uri: photos[0] }} />
+      </View>
       <Info>
         <Text variant="label">{name}</Text>
         <Section>
