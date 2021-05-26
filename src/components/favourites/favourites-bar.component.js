@@ -16,7 +16,7 @@ export const FavouriteBar = ({ favourites, onNavigate }) => {
   }
   return (
     <FavouriteBarWrapper>
-      <Spacer variant="left" size="large">
+      <Spacer position="left" size="large">
         <Text variant="caption">Favourite</Text>
       </Spacer>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
