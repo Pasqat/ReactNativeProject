@@ -11,6 +11,9 @@ import { MapScreen } from "../../features/map/screens/map.screen";
 import { RestaurantNavigator } from "./restaurant.navigator";
 
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
+import { RestaurantContextProvider } from "../../services/restaurants/restaurants.context";
+import { FavouriteContextProvider } from "../../services/favourites/favourites.context";
+import { LocationContextProvider } from "../../services/location/location.context";
 
 function SettingsScreen() {
   const { onLogout } = useContext(AuthenticationContext);
@@ -41,16 +44,22 @@ const createScreenOptions = ({ route }) => {
 
 export const AppNavigator = () => {
   return (
-    <Tab.Navigator
-      screenOptions={createScreenOptions}
-      tabBarOptions={{
-        activeTintColor: theme.colors.ui.error,
-        inactiveTintColor: theme.colors.ui.secondary,
-      }}
-    >
-      <Tab.Screen name="Restourant" component={RestaurantNavigator} />
-      <Tab.Screen name="Map" component={MapScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
-    </Tab.Navigator>
+    <FavouriteContextProvider>
+      <LocationContextProvider>
+        <RestaurantContextProvider>
+          <Tab.Navigator
+            screenOptions={createScreenOptions}
+            tabBarOptions={{
+              activeTintColor: theme.colors.ui.error,
+              inactiveTintColor: theme.colors.ui.secondary,
+            }}
+          >
+            <Tab.Screen name="Restourant" component={RestaurantNavigator} />
+            <Tab.Screen name="Map" component={MapScreen} />
+            <Tab.Screen name="Settings" component={SettingsScreen} />
+          </Tab.Navigator>
+        </RestaurantContextProvider>
+      </LocationContextProvider>
+    </FavouriteContextProvider>
   );
 };
