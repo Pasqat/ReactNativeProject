@@ -7,6 +7,7 @@ import {
   AccountContainer,
   AuthButton,
   Title,
+  AnimationWrapper,
 } from "../components/account.styles";
 import { Spacer } from "../../../components/spacer/spacer.component";
 
@@ -14,13 +15,15 @@ export const AccountScreen = ({ navigation }) => {
   return (
     <AccountBackground>
       <AccountCover />
-      <LottieView
-        autoPlay
-        loop
-        key="animation"
-        resizeMode="cover"
-        source={require("../../../../assets/watermelon.json")}
-      />
+      <AnimationWrapper>
+        <LottieView
+          autoPlay
+          loop
+          key="animation"
+          resizeMode="cover"
+          source={require("../../../../assets/watermelon.json")}
+        />
+      </AnimationWrapper>
       <Title>Meals To Go</Title>
       <AccountContainer>
         <AuthButton
