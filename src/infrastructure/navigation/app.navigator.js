@@ -1,8 +1,7 @@
-import React from "react";
-import { Text } from "react-native";
+import React, { useContext } from "react";
+import { Text, Button } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
-import { NavigationContainer } from "@react-navigation/native";
 
 import { theme } from "../theme";
 
@@ -11,10 +10,14 @@ import { MapScreen } from "../../features/map/screens/map.screen";
 
 import { RestaurantNavigator } from "./restaurant.navigator";
 
+import { AuthenticationContext } from "../../services/authentication/authentication.context";
+
 function SettingsScreen() {
+  const { onLogout } = useContext(AuthenticationContext);
   return (
     <SafeArea>
       <Text>Settings!</Text>
+      <Button title="Logout" onPress={() => onLogout()} />
     </SafeArea>
   );
 }
