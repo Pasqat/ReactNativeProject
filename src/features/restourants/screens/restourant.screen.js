@@ -14,6 +14,7 @@ import { FadeInView } from "../../../components/animation/fade.animation";
 import { RestaurantContext } from "../../../services/restaurants/restaurants.context";
 import { FavouriteContext } from "../../../services/favourites/favourites.context";
 import { FavouriteBar } from "../../../components/favourites/favourites-bar.component";
+import { Text } from "../../../components/typography/text.component";
 
 const LoadingContainer = styled.View`
   position: absolute;
@@ -33,6 +34,7 @@ export const RestourantScreen = ({ navigation }) => {
 
   return (
     <SafeArea>
+      <Text>Tornare su Vscode?</Text>
       {isLoading && (
         <LoadingContainer>
           <LoadingSpinner animating size="large" color={Colors.blue500} />
