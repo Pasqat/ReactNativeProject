@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import { ActivityIndicator, Colors } from "react-native-paper";
 import styled from "styled-components/native";
 
@@ -17,8 +17,9 @@ import { FavouriteBar } from "../../../components/favourites/favourites-bar.comp
 
 const LoadingContainer = styled.View`
   position: absolute;
-  top: 50%;
   left: 50%;
+  top: 50%;
+  z-index: 99;
 `;
 
 const LoadingSpinner = styled(ActivityIndicator)`

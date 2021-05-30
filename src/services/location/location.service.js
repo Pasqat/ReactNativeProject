@@ -9,7 +9,6 @@ export const locationRequest = (searchWord) => {
 };
 
 export const locationTransform = (result) => {
-  console.log(result);
   const transformedResult = camelize(result);
   const { geometry = {} } = transformedResult.results[0];
   const { lat, lng } = geometry.location;
