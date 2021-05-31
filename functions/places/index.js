@@ -48,6 +48,7 @@ module.exports.placesRequest = (request, response, client) => {
       return response.json(res.data);
     })
     .catch((e) => {
-      return response.status(400).send(e.response.data.error_message);
+      response.status(400);
+      return response.send(e.response.data.error_message);
     });
 };

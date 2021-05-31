@@ -24,6 +24,7 @@ export const RestaurantContextProvider = ({ children }) => {
     restaurantRequest(loc)
       .then(restaurantTransform)
       .then((results) => {
+        setError(null);
         setIsLoading(false);
         setRestaurants(results);
       })
