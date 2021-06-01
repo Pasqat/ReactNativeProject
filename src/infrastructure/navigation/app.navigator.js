@@ -5,6 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { theme } from "../theme";
 
 import { MapScreen } from "../../features/map/screens/map.screen";
+import { CheckoutScreen } from "../../features/checkout/screens/checkout.screen";
 
 import { RestaurantNavigator } from "./restaurant.navigator";
 
@@ -18,6 +19,7 @@ const Tab = createBottomTabNavigator();
 const TAB_ICON = {
   Restourant: "md-restaurant",
   Settings: "md-settings",
+  Checkout: "md-cart",
   Map: "md-map",
 };
 
@@ -43,6 +45,7 @@ export const AppNavigator = () => {
             }}
           >
             <Tab.Screen name="Restourant" component={RestaurantNavigator} />
+            <Tab.Screen name="Checkout" component={CheckoutScreen} />
             <Tab.Screen name="Map" component={MapScreen} />
             <Tab.Screen name="Settings" component={SettingsNavigator} />
           </Tab.Navigator>

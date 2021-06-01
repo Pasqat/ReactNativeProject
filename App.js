@@ -15,13 +15,21 @@ import { AuthenticationContextProvider } from "./src/services/authentication/aut
 import { Navigation } from "./src/infrastructure/navigation";
 
 // Initialize Firebase
+// const firebaseConfig = {
+//   apiKey: "AIzaSyDtua7DEZRjsmdsbKj62m4l1J49lPywaGU",
+//   authDomain: "mealstogo-1cc16.firebaseapp.com",
+//   projectId: "mealstogo-1cc16",
+//   storageBucket: "mealstogo-1cc16.appspot.com",
+//   messagingSenderId: "700605278648",
+//   appId: "1:700605278648:web:8289f18b3882eecfdac74d",
+// };
 const firebaseConfig = {
-  apiKey: "AIzaSyDtua7DEZRjsmdsbKj62m4l1J49lPywaGU",
-  authDomain: "mealstogo-1cc16.firebaseapp.com",
-  projectId: "mealstogo-1cc16",
-  storageBucket: "mealstogo-1cc16.appspot.com",
-  messagingSenderId: "700605278648",
-  appId: "1:700605278648:web:8289f18b3882eecfdac74d",
+  apiKey: "AIzaSyDqBbjhiJPUY1KF6vfWt0zAoq4pOXpUpFo",
+  authDomain: "mealstogopublic-911b1.firebaseapp.com",
+  projectId: "mealstogopublic-911b1",
+  storageBucket: "mealstogopublic-911b1.appspot.com",
+  messagingSenderId: "309220918520",
+  appId: "1:309220918520:web:5c973267d6bdd2fe55e70d",
 };
 
 if (!firebase.apps.length) {
