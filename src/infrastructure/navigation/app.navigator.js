@@ -10,6 +10,7 @@ import { CheckoutScreen } from "../../features/checkout/screens/checkout.screen"
 import { RestaurantNavigator } from "./restaurant.navigator";
 
 import { RestaurantContextProvider } from "../../services/restaurants/restaurants.context";
+import { CartContextProvider } from "../../services/cart/cart.context";
 import { FavouriteContextProvider } from "../../services/favourites/favourites.context";
 import { LocationContextProvider } from "../../services/location/location.context";
 import { SettingsNavigator } from "./settings.navigator";
@@ -37,18 +38,20 @@ export const AppNavigator = () => {
     <FavouriteContextProvider>
       <LocationContextProvider>
         <RestaurantContextProvider>
-          <Tab.Navigator
-            screenOptions={createScreenOptions}
-            tabBarOptions={{
-              activeTintColor: theme.colors.ui.error,
-              inactiveTintColor: theme.colors.ui.secondary,
-            }}
-          >
-            <Tab.Screen name="Restourant" component={RestaurantNavigator} />
-            <Tab.Screen name="Checkout" component={CheckoutScreen} />
-            <Tab.Screen name="Map" component={MapScreen} />
-            <Tab.Screen name="Settings" component={SettingsNavigator} />
-          </Tab.Navigator>
+          <CartContextProvider>
+            <Tab.Navigator
+              screenOptions={createScreenOptions}
+              tabBarOptions={{
+                activeTintColor: theme.colors.ui.error,
+                inactiveTintColor: theme.colors.ui.secondary,
+              }}
+            >
+              <Tab.Screen name="Restourant" component={RestaurantNavigator} />
+              <Tab.Screen name="Checkout" component={CheckoutScreen} />
+              <Tab.Screen name="Map" component={MapScreen} />
+              <Tab.Screen name="Settings" component={SettingsNavigator} />
+            </Tab.Navigator>
+          </CartContextProvider>
         </RestaurantContextProvider>
       </LocationContextProvider>
     </FavouriteContextProvider>
