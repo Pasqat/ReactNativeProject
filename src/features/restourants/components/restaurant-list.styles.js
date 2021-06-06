@@ -16,5 +16,5 @@ export const OrderButton = styled(Button).attrs({
 })`
   padding: ${(props) => props.theme.space[2]};
   width: 80%;
-  aling-self: center;
+  align-self: center;
 `;

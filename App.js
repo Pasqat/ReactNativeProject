@@ -14,15 +14,6 @@ import { theme } from "./src/infrastructure/theme";
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 import { Navigation } from "./src/infrastructure/navigation";
 
-// Initialize Firebase
-// const firebaseConfig = {
-//   apiKey: "AIzaSyDtua7DEZRjsmdsbKj62m4l1J49lPywaGU",
-//   authDomain: "mealstogo-1cc16.firebaseapp.com",
-//   projectId: "mealstogo-1cc16",
-//   storageBucket: "mealstogo-1cc16.appspot.com",
-//   messagingSenderId: "700605278648",
-//   appId: "1:700605278648:web:8289f18b3882eecfdac74d",
-// };
 const firebaseConfig = {
   apiKey: "AIzaSyDqBbjhiJPUY1KF6vfWt0zAoq4pOXpUpFo",
   authDomain: "mealstogopublic-911b1.firebaseapp.com",
