@@ -1,18 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { ScrollView } from "react-native";
 import { List } from "react-native-paper";
-import { SafeArea } from "../../../components/utility/safeArea";
+
+import { Spacer } from "../../../components/spacer/spacer.component";
 import { RestourantInfoCard } from "../components/restourant-info-card.component";
 
-// breakfast, launch, dinner, drinks
+import { SafeArea } from "../../../components/utility/safeArea";
+import { OrderButton } from "../components/restaurant-list.styles";
+import { CartContext } from "../../../services/cart/cart.context";
 
-export const RestaurantDetailScreen = ({ route }) => {
+export const RestaurantDetailScreen = ({ navigation, route }) => {
   const [breakfastExpanded, setBreakfastExpanded] = useState(false);
   const [lunchExpanded, setLunchExpanded] = useState(false);
   const [dinnerExpanded, setDinnerExpanded] = useState(false);
   const [drinksExpanded, setDrinksExpanded] = useState(false);
 
   const { restaurant } = route.params;
+  const { addToCart } = useContext(CartContext);
 
   return (
     <SafeArea>
@@ -62,6 +66,16 @@ export const RestaurantDetailScreen = ({ route }) => {
           </List.Accordion>
         </List.Section>
       </ScrollView>
+      <OrderButton
+        icon="cash-usd"
+        mode="contained"
+        onPress={() => {
+          // 12.99 -> 1299, stripe price format expected
+          addToCart({ item: "special", price: 1299 }, restaurant);
+        }}
+      >
+        Order special Only 12.99!
+      </OrderButton>
     </SafeArea>
   );
 };
