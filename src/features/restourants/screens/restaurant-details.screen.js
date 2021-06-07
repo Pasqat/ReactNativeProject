@@ -72,6 +72,7 @@ export const RestaurantDetailScreen = ({ navigation, route }) => {
         onPress={() => {
           // 12.99 -> 1299, stripe price format expected
           addToCart({ item: "special", price: 1299 }, restaurant);
+          navigation.navigate("Checkout");
         }}
       >
         Order special Only 12.99!

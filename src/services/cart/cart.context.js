@@ -15,9 +15,9 @@ export const CartContextProvider = ({ children }) => {
     if (!restaurant || rst.placeId !== restaurant.placeId) {
       setRestaurant(rst);
       setCart([item]);
+    } else {
+      setCart([...cart, item]);
     }
-
-    setCart([...cart, item]);
   };
 
   const clear = () => {
