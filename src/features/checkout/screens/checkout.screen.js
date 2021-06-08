@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ScrollView } from "react-native";
-import { List } from "react-native-paper";
+import { List, Divider } from "react-native-paper";
 
 import { CartContext } from "../../../services/cart/cart.context";
 import {
@@ -69,12 +69,14 @@ export const CheckoutScreen = ({ navigation }) => {
             <Text>Your Order</Text>
           </Spacer>
           <List.Section>
-            {cart.map(({ item, price }) => (
-              <List.Item title={`${item} - ${price / 100}`} />
+            {cart.map(({ item, price }, i) => (
+              <List.Item key={`item-${i}`} title={`${item} - ${price / 100}`} />
             ))}
           </List.Section>
           <Text>Total: {sum / 100}</Text>
         </Spacer>
+        <Spacer position="top" size="large" />
+        <Divider />
         <NameInput label="name" value={name} onChangeText={(t) => setName(t)} />
         {/*NOTE: check the lenght so the app don't crash */}
         <Spacer position="top" size="large">
