@@ -17,6 +17,7 @@ export const RestaurantDetailScreen = ({ navigation, route }) => {
 
   const { restaurant } = route.params;
   const { addToCart } = useContext(CartContext);
+  
 
   return (
     <SafeArea>
