@@ -42,8 +42,8 @@ export const AppNavigator = () => {
             <Tab.Navigator
               screenOptions={createScreenOptions}
               tabBarOptions={{
-                activeTintColor: theme.colors.ui.error,
-                inactiveTintColor: theme.colors.ui.secondary,
+                activeTintColor: theme.colors.brand.primary,
+                inactiveTintColor: theme.colors.brand.muted,
               }}
             >
               <Tab.Screen name="Restourant" component={RestaurantNavigator} />

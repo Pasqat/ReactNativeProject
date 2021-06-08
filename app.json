@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.pasqat.MealsToGo"
     },
     "web": {
       "favicon": "./assets/favicon.png"
