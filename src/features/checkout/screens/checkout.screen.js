@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ScrollView } from "react-native";
 import { List } from "react-native-paper";
 
@@ -9,10 +9,12 @@ import {
   NameInput,
   PayButton,
   ClearButton,
+  PaymentProcessing,
 } from "../components/checkout.styles";
 
 import { CreditCardInput } from "../components/credit-card.component";
 import { RestourantInfoCard } from "../../../features/restourants/components/restourant-info-card.component";
+import { payRequest } from "../../../services/checkout/checkout.services";
 
 import { SafeArea } from "../../../components/utility/safeArea";
 import { Text } from "../../../components/typography/text.component";
@@ -21,6 +23,26 @@ import { Spacer } from "../../../components/spacer/spacer.component";
 export const CheckoutScreen = () => {
   const { cart, restaurant, sum, clearCart } = useContext(CartContext);
   const [name, setName] = useState("");
+  const [card, setCard] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const onPay = () => {
+    setIsLoading(true);
+    if (!card || !card.id) {
+      setIsLoading(false);
+      console.log("somes error");
+      return;
+    }
+    payRequest(card.id, sum, name)
+      .then((result) => {
+        setIsLoading(false);
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(false);
+      });
+  };
 
   if (!cart.length || !restaurant) {
     return (
@@ -35,6 +57,7 @@ export const CheckoutScreen = () => {
   return (
     <SafeArea>
       <RestourantInfoCard restaurant={restaurant} />
+      <PaymentProcessing />
       <ScrollView>
         <Spacer position="left" size="medium">
           <Spacer position="top" size="large">
@@ -50,20 +73,26 @@ export const CheckoutScreen = () => {
         <NameInput label="name" value={name} onChangeText={(t) => setName(t)} />
         {/*NOTE: check the lenght so the app don't crash */}
         <Spacer position="top" size="large">
-          {name.length > 0 && <CreditCardInput name={name} />}
+          {name.length > 0 && (
+            <CreditCardInput name={name} onSuccess={setCard} />
+          )}
         </Spacer>
         <Spacer position="top" size="xxl" />
         <PayButton
+          disabled={isLoading}
           icon="cash-usd"
           mode="contained"
-          onPress={() => {
-            console.log("pay now");
-          }}
+          onPress={onPay}
         >
           Pay
         </PayButton>
         <Spacer position="top" size="large">
-          <ClearButton icon="cart-off" mode="contained" onPress={clearCart}>
+          <ClearButton
+            disabled={isLoading}
+            icon="cart-off"
+            mode="contained"
+            onPress={clearCart}
+          >
             Clear Cart
           </ClearButton>
         </Spacer>
