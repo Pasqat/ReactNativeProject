@@ -36,11 +36,12 @@ export const CheckoutScreen = () => {
     payRequest(card.id, sum, name)
       .then((result) => {
         setIsLoading(false);
-        console.log(result);
+        clearCart();
+        setName("");
       })
       .catch((err) => {
-        console.log(err);
         setIsLoading(false);
+        console.log(err);
       });
   };
 
@@ -57,7 +58,7 @@ export const CheckoutScreen = () => {
   return (
     <SafeArea>
       <RestourantInfoCard restaurant={restaurant} />
-      <PaymentProcessing />
+      {isLoading && <PaymentProcessing />}
       <ScrollView>
         <Spacer position="left" size="medium">
           <Spacer position="top" size="large">
