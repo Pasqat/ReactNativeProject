@@ -13,7 +13,9 @@ export const CheckoutErrorScreen = ({ route }) => {
     <SafeArea>
       <CartIconContainer>
         <CartIcon icon="close" bg={colors.ui.error} />
-        <Text variant="label">{error}</Text>
+        <Spacer position="top" size="large">
+          <Text variant="label">{error}</Text>
+        </Spacer>
       </CartIconContainer>
     </SafeArea>
   );

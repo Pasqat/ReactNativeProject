@@ -20,7 +20,7 @@ export const CheckoutNavigator = () => {
         component={CheckoutSuccessScreen}
       />
       <CheckoutStack.Screen
-        name="CheckoutErrorScreen"
+        name="CheckoutError"
         component={CheckoutErrorScreen}
       />
     </CheckoutStack.Navigator>

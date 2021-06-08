@@ -3,7 +3,7 @@ import { LiteCreditCardInput } from "react-native-credit-card-input";
 
 import { cardTokenRequest } from "../../../services/checkout/checkout.services";
 
-export const CreditCardInput = ({ name, onSuccess }) => {
+export const CreditCardInput = ({ name, onSuccess, onError }) => {
   const onChange = async (formData) => {
     const { values, status } = formData;
     const isIncomplete = Object.values(status).includes("incomplete");
@@ -17,8 +17,13 @@ export const CreditCardInput = ({ name, onSuccess }) => {
       name: name,
     };
     if (!isIncomplete) {
-      const info = await cardTokenRequest(card);
-      onSuccess(info);
+      try {
+        const info = await cardTokenRequest(card);
+        onSuccess(info);
+      } catch (e) {
+        onError(e);
+        // to test errors see https://stripe.com/docs/testing
+      }
     }
   };
   return <LiteCreditCardInput onChange={onChange} />;

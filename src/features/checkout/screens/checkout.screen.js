@@ -20,7 +20,7 @@ import { SafeArea } from "../../../components/utility/safeArea";
 import { Text } from "../../../components/typography/text.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 
-export const CheckoutScreen = () => {
+export const CheckoutScreen = ({ navigation }) => {
   const { cart, restaurant, sum, clearCart } = useContext(CartContext);
   const [name, setName] = useState("");
   const [card, setCard] = useState(null);
@@ -31,6 +31,9 @@ export const CheckoutScreen = () => {
     if (!card || !card.id) {
       setIsLoading(false);
       console.log("somes error");
+      navigation.navigate("CheckoutError", {
+        error: "Please  fill in a valid credit card",
+      });
       return;
     }
     payRequest(card.id, sum, name)
@@ -38,10 +41,11 @@ export const CheckoutScreen = () => {
         setIsLoading(false);
         clearCart();
         setName("");
+        navigation.navigate("CheckoutSuccess");
       })
       .catch((err) => {
         setIsLoading(false);
-        console.log(err);
+        navigation.navigate("CheckoutError", { error: err });
       });
   };
 
@@ -75,7 +79,15 @@ export const CheckoutScreen = () => {
         {/*NOTE: check the lenght so the app don't crash */}
         <Spacer position="top" size="large">
           {name.length > 0 && (
-            <CreditCardInput name={name} onSuccess={setCard} />
+            <CreditCardInput
+              name={name}
+              onSuccess={setCard}
+              onError={(e) =>
+                navigation.navigate("CheckoutError", {
+                  error: `Something went wrong processing your credit card: ${e}`,
+                })
+              }
+            />
           )}
         </Spacer>
         <Spacer position="top" size="xxl" />
